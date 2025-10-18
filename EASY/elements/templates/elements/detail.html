@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-detail
+    <div class="card">
+        <div class="card-header">
+            <h1>{{element.title}}</h1>
+        </div>
+        <div class="card-body">
+            <div>{{element.description}}</div>
+            <div>{{element.content}}</div>
+        </div>
+    </div>
+    
 {% endblock %}
