@@ -3,7 +3,7 @@
 {% block title %}Elementos{% endblock %}
 {% block content %}
 
-    <form method="get" class="row">
+    <form method="get" class="row p-2">
         <div class="col-auto">
             <input type="text" name="search" class="form-control" placeholder="Buscar" value={{search}}>
         </div>
@@ -49,13 +49,13 @@
                 <div class="col-md-4">
                 <img src="{{e.image.url}}" class="img-fluid rounded-start" alt="...">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 d-flex align-items-center">
                 <div class="card-body">
-                    <h5 class="card-title">{{e.title}}</h5>
+                    <h3 class="card-title">{{e.title}}</h3>
                     <p class="card-text">{{e.description}}</p>
                     <p class="card-text">Precio: ${{e.price}}</p>
                     <p class="card-text"><small class="text-body-secondary">{{e.created}}</small></p>
-                    <a class="btn btn-sm btn-outline-dark" href="{% url 'elements:detail' e.id %}">Ver</a>
+                    <a class="btn btn-sm btn-outline-dark" href="{% url 'elements:detail' e.id %}">Comprar ahora</a>
                 </div>
                 </div>
             </div>

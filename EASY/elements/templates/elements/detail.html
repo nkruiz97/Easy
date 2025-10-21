@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="card">
+    <!-- <div class="card">
         <div class="card-header">
             <h1>{{element.title}}</h1>
         </div>
@@ -9,6 +9,30 @@
             <div>{{element.description}}</div>
             <div>{{element.content}}</div>
         </div>
+    </div> -->
+    
+
+
+    <!--  -->
+   <div class="container d-flex justify-content-center align-items-center mt-5" style="height: 80vh;">
+     <div class="card mb-3" style="max-width: 500px;">
+  <div class="row g-0">
+    <div class="col-md-4 w-100">
+      <img src="{{element.image.url}}" class="img-fluid rounded " alt="...">
     </div>
+    <div class="container d-flex justify-content-center align-items-center text-center">
+      <div class="card-body">
+        <h5 class="card-title">{{element.title}}</h5>
+        <p class="card-text">{{element.price}}</p>
+        <p class="card-text"><small class="text-body-secondary">{{element.created}}</small></p>
+        <a href="" class="btn btn-outline-success">Envíanos un mensaje</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+   </div>
+
+    
     
 {% endblock %}
