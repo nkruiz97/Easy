@@ -35,3 +35,15 @@ class Element(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class Carousel(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(max_length=255)
+    image1 = models.ImageField(upload_to='carousel/')
+    image2 = models.ImageField(upload_to='carousel/')
+    image3 = models.ImageField(upload_to='carousel/')
+
+    def __str__(self):
+        return self.title

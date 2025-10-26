@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from .models import Element, Category
+from .models import Element, Category, Carousel
 
 # Create your views here.
 
@@ -35,7 +35,28 @@ def detail(request, pk):
     return render(request, 'elements/detail.html',{'element':element})
 
 def index0(request):
-    return render(request, 'elements/index0.html')
+    carousels = Carousel.objects.all()
+    search = request.GET.get('search') if request.GET.get('search') else '' 
+    
+    category_id = request.GET.get('category_id')
+    category_id = int(category_id) if category_id else ''
+
+    elements = Element.objects
+
+    if search:
+        elements = Element.objects.filter(title__contains=search)
+    
+
+    if category_id:
+        elements = elements.filter(category_id=category_id)
+    
+    elements = elements.filter(type=2).all()
+
+    categories = Category.objects.all()
+
+    paginator = Paginator(elements,10)
+    page_number = request.GET.get('page')
+    return render(request, 'elements/index0.html', {'carousels': carousels,'elements':paginator.get_page(page_number), 'search':search, 'category_id':category_id, 'categories':categories})
 
 
 def contacto(request):
