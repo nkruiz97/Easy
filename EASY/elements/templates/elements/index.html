@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Elementos{% endblock %}
-{% block content %}
 
-    <form method="get" class="row p-2">
+{% block content %}
+ 
+       <div class="container">
+         <form method="get" class="row mb-5">
         <div class="col-auto">
             <input type="text" name="search" class="form-control" placeholder="Buscar" value={{search}}>
         </div>
@@ -31,31 +33,22 @@
             <a href="{% url 'elements:index' %}" class="btn btn-outline-secondary">Limpiar</a>
         </div>
     </form>
+         
+         <div class="card__container">
+            {% for e in elements %}
+            <article class="card__article p-5">
+               <img src="{{e.image.url}}" alt="image" class="card__img img-fluid border rounded-3 shadow-lg" style="min-height: 15rem; max-height: 15rem; max-width: 19.5rem;">
 
+               <div class="card__data">
+                  <span class="card__description">{{e.content}}</span>
+                  <h2 class="card__title">{{e.title}}</h2>
+                  <a href="{% url 'elements:detail' e.id %}" class="card__button">Comprar ahora</a>
+               </div>
+            </article>
+             {% endfor %}
+         </div>
+          
+      </div>
+    
 
-
-    {% for e in elements %}
-       
-       <div class="container mt-5 text-center">
-         <div class="card mb-3 mx-auto" style="max-width: 900px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                <img src="{{e.image.url}}" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8 d-flex align-items-center">
-                <div class="card-body">
-                    <h3 class="card-title">{{e.title}}</h3>
-                    <p class="card-text">{{e.description}}</p>
-                    <p class="card-text">Precio: ${{e.price}}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{e.created}}</small></p>
-                    <a class="btn btn-sm btn-outline-success" href="{% url 'elements:detail' e.id %}">Comprar ahora</a>
-                </div>
-                </div>
-            </div>
-        </div>
-       </div>
-
-     
-    {% endfor %}
-        {% include "partials\pagination.html" with page_obj=elements %}
 {% endblock %}
